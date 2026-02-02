@@ -21,6 +21,10 @@ and outputs:
 
 The pipeline requires a working GPU with CUDA, hence checks will be done to this effect.
 
+Secondly, the LocalColabFold requires link to a trained model, which can be downloaded form:
+https://zenodo.org/records/10137507
+and the workdir folder is to be placed in scripts/.
+
 Otherwise, the pipeline uses snakemake, and therefore requires its installation:
 
 conda create -c conda-forge -c bioconda -c nodefaults -n snakemake snakemake
