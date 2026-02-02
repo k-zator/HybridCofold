@@ -1,0 +1,12 @@
+name: pose
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - openbabel
+  - rdkit
+  - biopython
+  - matplotlib
+  - pip:
+      - posebusters

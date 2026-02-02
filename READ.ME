@@ -1,0 +1,37 @@
+Snakemake pipeline for hybrid protein-ligand co-folding scheme
+
+Developer: Katarzyna J. Zator
+
+* Overview
+
+A hybrid co-folding pipeline consists of 
+- LocalColabFold - a lightweight AlphaFold2 release to predict protein structure
+- DynamicBind - a flexible protein-ligand docking tool for pose prediction and relaxation with MM 
+- GNINA - used as a rescoring function to give Affnities grounded in binding energy data
+
+The scheme takes input in form of:
+- SMILES (saved in ligands.smi) 
+- protein FASTA (saved in protein.fasta),
+and outputs:
+- predicted protein 3D structure in PDB format from LocalColabFold
+- protein-ligand complex in PDB format from DynamicBind (several ranked outputs) 
+- summary of predicted affinities from DynamicBind and GNINA
+
+* Compilation
+
+The pipeline requires a working GPU with CUDA, hence checks will be done to this effect.
+
+Otherwise, the pipeline uses snakemake, and therefore requires its installation:
+
+conda create -c conda-forge -c bioconda -c nodefaults -n snakemake snakemake
+conda activate snakemake
+
+The other dependent environments will be implicitly handled by snakemake.
+To run the pipeline, the local paths need to be adjusted from default in snakemake_config.yaml:
+
+  localcolabfold_dir: "/path/to/local/cofold/localcolabfold"
+  dynamicbind_dir: "/path/to/local/cofold/DynamicBind"
+
+Finally, running the pipeline is done with:
+
+snakemake --cores 1 -j 1 --use-conda --quiet 

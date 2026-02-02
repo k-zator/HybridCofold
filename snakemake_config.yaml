@@ -1,0 +1,30 @@
+inputs:
+  protein_fasta: "protein.fasta"
+  ligands_smi: "ligand_1.smi"
+  random_seed: 42
+
+paths:
+  outdir: "results"
+  pixi: "pixi"
+  localcolabfold_dir: "/path/to/local/cofold/localcolabfold"
+  localcolabfold_repo: "https://github.com/yoshitakamo/localcolabfold.git"
+  colabfold_script: "run_colabfold.sh"
+
+  dynamicbind_dir: "/path/to/local/cofold/DynamicBind"
+  dynamicbind_repo: "https://github.com/luwei0917/DynamicBind.git"
+
+  gnina_repo: "https://github.com/gnina/gnina/releases/download/v1.3.2/gnina.1.3.2"
+  gnina_bin: "tools/gnina/gnina.1.3.2"
+  cudnn_lib: "~/anaconda3/pkgs/libcudnn-9.13.1.26-hf7e9902_0/lib"
+
+env_names:
+  relax: "relax" # separated as called within a single DynamicBind run
+
+colabfold:
+  num_recycle: 1
+  num_model: 1
+
+dynamicbind:
+  savings_per_complex: 40
+  inference_steps: 20
+  workdir_src: "scripts/workdir"
